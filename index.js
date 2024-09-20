@@ -5,9 +5,12 @@ const router = require("./routes/api");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
+// Middleware
+app.use(cors());
+app.use(express.json()); // for parsing application/json
+
+// MongoDB connection
 const URL = process.env.DATABASE_URL;
 const OPTION = { user: "", pass: "", autoIndex: true };
 
@@ -16,11 +19,11 @@ mongoose
   .then(() => console.log("Database Connected"))
   .catch((err) => console.error("Database connection error:", err));
 
-app.set("etag", false);
+// Routes
+app.use("/api", router); // Routes from your routes/api.js file
 
-app.use("/api", router);
-
-const port = 5414;
+// Port configuration for Vercel
+const port = process.env.PORT || 5414; 
 app.listen(port, () => {
   console.log(`Backend is running on http://localhost:${port}`);
 });
