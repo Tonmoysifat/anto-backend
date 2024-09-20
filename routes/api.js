@@ -1,6 +1,6 @@
 const express = require('express');
-const { getAnimals, addAnimal } = require('../controllers/animalController');
-const { getCategories, addCategory } = require('../controllers/categoryController');
+const { getAnimals, addAnimal } = require('../controllers/AnimalController');
+const { getCategories, addCategory } = require('../controllers/CategoryController');
 const {upload} = require("../utility/multerConfig");
 const router = express.Router();
 
